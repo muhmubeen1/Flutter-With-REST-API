@@ -32,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text("Home Screen"),
+          title: const Text("API Testing"),
           centerTitle: true,
           backgroundColor: Colors.blue,
         ),
@@ -56,8 +56,21 @@ class _HomeScreenState extends State<HomeScreen> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text("Title:\n${postList[index].title}"),
-                        Text("Describtion:\n${postList[index].body}"),
+                        const Text(
+                          "Title:",
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
+                        Text(postList[index].title.toString()),
+                        const SizedBox(
+                          height: 5,
+                        ),
+                        const Text(
+                          "Describtion:",
+                          style: TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
+                        Text(postList[index].body.toString()),
                       ],
                     )),
                   );
