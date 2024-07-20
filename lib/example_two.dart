@@ -35,18 +35,28 @@ class _ExampleTwoState extends State<ExampleTwo> {
         centerTitle: true,
         backgroundColor: Colors.teal,
       ),
-      body: Column(
-        children: [
-          FutureBuilder(
-              future: getPhotosApi(),
-              builder: (context, snapshot) {
-                return ListView.builder(itemBuilder: (context, index) {
-                  return const ListTile(
-                    title: Text("Hey There"),
-                  );
-                });
-              })
-        ],
+      body: SafeArea(
+        child: Column(
+          children: [
+            Expanded(
+              child: FutureBuilder<List<Photos>>(
+                  future: getPhotosApi(),
+                  builder: (context, snapshot) {
+                    return ListView.builder(
+                        itemCount: photosList.length,
+                        itemBuilder: (context, index) {
+                          return ListTile(
+                            leading: CircleAvatar(
+                              backgroundImage: NetworkImage(
+                                  snapshot.data![index].url.toString()),
+                            ),
+                            title: Text(snapshot.data![index].title.toString()),
+                          );
+                        });
+                  }),
+            )
+          ],
+        ),
       ),
     );
   }
