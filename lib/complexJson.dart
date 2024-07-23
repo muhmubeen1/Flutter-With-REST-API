@@ -50,15 +50,40 @@ class _ExampleThreeState extends State<ExampleThree> {
                           if (!snapshot.hasData) {
                             return const CircularProgressIndicator();
                           } else {
-                            return Card(
-                              child: Column(children: [
-                                Row(
-                                  children: [
-                                    const Text("Name"),
-                                    Text(userList[index].name.toString()),
-                                  ],
-                                )
-                              ]),
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Card(
+                                shadowColor: Colors.teal,
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(children: [
+                                    ReuseableRow(
+                                        title: 'ID',
+                                        value: userList[index].id.toString()),
+                                    ReuseableRow(
+                                        title: 'Name',
+                                        value: userList[index].name.toString()),
+                                    ReuseableRow(
+                                        title: 'Email',
+                                        value:
+                                            userList[index].email.toString()),
+                                    ReuseableRow(
+                                        title: 'Address',
+                                        value: userList[index]
+                                                .address!
+                                                .city
+                                                .toString() +
+                                            userList[index]
+                                                .address!
+                                                .geo!
+                                                .lat
+                                                .toString()),
+                                  ]),
+                                ),
+                              ),
                             );
                           }
                         });
@@ -67,6 +92,29 @@ class _ExampleThreeState extends State<ExampleThree> {
           ],
         )),
       ),
+    );
+  }
+}
+
+class ReuseableRow extends StatefulWidget {
+  String title, value;
+
+  ReuseableRow({Key? key, required this.title, required this.value})
+      : super(key: key);
+  @override
+  State<ReuseableRow> createState() => _ReuseableRowState();
+}
+
+class _ReuseableRowState extends State<ReuseableRow> {
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Text(widget.title),
+        const SizedBox(width: 5),
+        Text(widget.value),
+      ],
     );
   }
 }
