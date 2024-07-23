@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:my_project/models/user_model/user_model.dart';
 
+import 'component.dart';
+
 class ExampleThree extends StatefulWidget {
   const ExampleThree({Key? key}) : super(key: key);
   @override
@@ -92,29 +94,6 @@ class _ExampleThreeState extends State<ExampleThree> {
           ],
         )),
       ),
-    );
-  }
-}
-
-class ReuseableRow extends StatefulWidget {
-  String title, value;
-
-  ReuseableRow({Key? key, required this.title, required this.value})
-      : super(key: key);
-  @override
-  State<ReuseableRow> createState() => _ReuseableRowState();
-}
-
-class _ReuseableRowState extends State<ReuseableRow> {
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(widget.title),
-        const SizedBox(width: 5),
-        Text(widget.value),
-      ],
     );
   }
 }
