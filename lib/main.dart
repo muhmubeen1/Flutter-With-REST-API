@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:my_project/complexJson.dart';
+// import 'package:my_project/ExampleThree.dart';
+import 'package:my_project/exampleFour.dart';
 // import 'package:my_project/home_screen.dart';
 
 void main() {
@@ -16,8 +17,9 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: ExampleThree(),
+        body: Examplefour(),
       ),
     );
   }
