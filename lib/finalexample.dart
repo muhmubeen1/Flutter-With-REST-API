@@ -33,61 +33,87 @@ class _FinalexampleState extends State<Finalexample> {
           backgroundColor: Colors.amber,
         ),
         body: SafeArea(
-          child: Column(
-            children: [
-              Expanded(
-                child: FutureBuilder<ProductsModel>(
-                  future: getProductsApi(),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return const Center(child: CircularProgressIndicator());
-                    } else if (snapshot.hasError) {
-                      return Center(child: Text('Error: ${snapshot.error}'));
-                    } else if (!snapshot.hasData ||
-                        snapshot.data!.data == null) {
-                      return const Center(child: Text('No data available'));
-                    } else {
-                      return ListView.builder(
-                        itemCount: snapshot.data!.data!.length,
-                        itemBuilder: (context, index) {
-                          return Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Container(
-                                height: MediaQuery.of(context).size.height * 3,
-                                width: MediaQuery.of(context).size.width * 1,
-                                child: ListView.builder(
-                                    scrollDirection: Axis.horizontal,
-                                    itemCount: snapshot
-                                        .data!.data![index].images!.length,
-                                    itemBuilder: (context, position) {
-                                      return Container(
-                                        height:
-                                            MediaQuery.of(context).size.height *
-                                                3,
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                1,
-                                        decoration: BoxDecoration(
-                                            image: DecorationImage(
-                                                image: NetworkImage(
-                                          snapshot.data!.data![index]
-                                              .images![position].url
-                                              .toString(),
-                                        ))),
-                                      );
-                                    }),
-                              ),
-                            ],
-                          );
-                        },
-                      );
-                    }
-                  },
+          child: Padding(
+            padding: const EdgeInsets.all(12),
+            child: Column(
+              children: [
+                Expanded(
+                  child: FutureBuilder<ProductsModel>(
+                    future: getProductsApi(),
+                    builder: (context, snapshot) {
+                      if (snapshot.connectionState == ConnectionState.waiting) {
+                        return const Center(child: CircularProgressIndicator());
+                      } else if (snapshot.hasError) {
+                        return Center(child: Text('Error: ${snapshot.error}'));
+                      } else if (!snapshot.hasData ||
+                          snapshot.data!.data == null) {
+                        return const Center(child: Text('No data available'));
+                      } else {
+                        return ListView.builder(
+                          itemCount: snapshot.data!.data!.length,
+                          itemBuilder: (context, index) {
+                            return Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                ListTile(
+                                  title: Text(snapshot
+                                      .data!.data![index].shop!.name
+                                      .toString()),
+                                  subtitle: Text(snapshot
+                                      .data!.data![index].shop!.shopEmail
+                                      .toString()),
+                                  leading: CircleAvatar(
+                                    backgroundImage: NetworkImage(snapshot
+                                        .data!.data![index].shop!.image
+                                        .toString()),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height:
+                                      MediaQuery.of(context).size.height * .3,
+                                  width: MediaQuery.of(context).size.width * 1,
+                                  child: ListView.builder(
+                                      scrollDirection: Axis.horizontal,
+                                      itemCount: snapshot.data!.data!.length,
+                                      itemBuilder: (context, position) {
+                                        return Padding(
+                                          padding:
+                                              const EdgeInsets.only(right: 10),
+                                          child: Container(
+                                            height: MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                .5,
+                                            width: MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                .25,
+                                            decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                                image: DecorationImage(
+                                                    fit: BoxFit.cover,
+                                                    image: NetworkImage(snapshot
+                                                        .data!
+                                                        .data![index]
+                                                        .images![position]
+                                                        .url
+                                                        .toString()))),
+                                          ),
+                                        );
+                                      }),
+                                )
+                              ],
+                            );
+                          },
+                        );
+                      }
+                    },
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
