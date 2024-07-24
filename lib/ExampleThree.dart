@@ -7,7 +7,7 @@ import 'package:my_project/models/user_model/user_model.dart';
 import 'component.dart';
 
 class ExampleThree extends StatefulWidget {
-  const ExampleThree({Key? key}) : super(key: key);
+  const ExampleThree({super.key});
   @override
   State<ExampleThree> createState() => _ExampleThreeState();
 }

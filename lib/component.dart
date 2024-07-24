@@ -5,8 +5,7 @@ import 'package:flutter/material.dart';
 class ReuseableRow extends StatefulWidget {
   String title, value;
 
-  ReuseableRow({Key? key, required this.title, required this.value})
-      : super(key: key);
+  ReuseableRow({super.key, required this.title, required this.value});
   @override
   State<ReuseableRow> createState() => _ReuseableRowState();
 }

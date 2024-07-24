@@ -27,7 +27,7 @@ class _ExamplefourState extends State<Examplefour> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text("User x Models"),
+          title: const Text("User x Models"),
           backgroundColor: Colors.limeAccent,
         ),
         body: SafeArea(

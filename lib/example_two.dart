@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import "package:http/http.dart" as http;
 
 class ExampleTwo extends StatefulWidget {
-  const ExampleTwo({Key? key}) : super(key: key);
+  const ExampleTwo({super.key});
   @override
   State<ExampleTwo> createState() => _ExampleTwoState();
 }
