@@ -103,7 +103,11 @@ class _FinalexampleState extends State<Finalexample> {
                                           ),
                                         );
                                       }),
-                                )
+                                ),
+                                Icon(snapshot.data!.data![index].inWishlist ==
+                                        true
+                                    ? Icons.favorite
+                                    : Icons.favorite_border_outlined)
                               ],
                             );
                           },
